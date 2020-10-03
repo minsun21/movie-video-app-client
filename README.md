@@ -6,3 +6,7 @@
 
 
 # 2. Redux
+- create store
+- Middle ware
+- dev tools
+-- add proxy 
