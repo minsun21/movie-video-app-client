@@ -1,0 +1,16 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+.navBar{
+  background-color: blue;
+  font-size: 1.5rem;
+  height: 65px;
+  top: 0;
+
+}
+
+.navBar ul{
+  display: flex;
+  list-style-type: none;
+}
