@@ -7,26 +7,23 @@ import {
   Link
 } from "react-router-dom";
 import LandingPage from './components/Landing/LandingPage';
-import LoginPage from './components/user/LoginPage';
-import RegisterPage from './components/user/RegisterPage';
+import RegisterPage from './components/User/RegisterPage';
+import LoginPage from './components/User/LoginPage'
 
 function App() {
   return (
     <Router>
-      <div className="main">
-        <nav className="navBar">
-          <ul>
+      <div>
+        <div className="header">
+          <ul className="nav">
             <li>
-              <Link to="/">Home</Link>
+              <Link className="link" to="/">Home</Link>
             </li>
             <li>
-              <Link to="/main">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
+              <Link className="link" to="/main">About</Link>
             </li>
           </ul>
-        </nav>
+        </div>
         <Switch>
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/main" component={LandingPage} />

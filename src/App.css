@@ -2,15 +2,25 @@
   box-sizing: border-box;
   margin: 0;
 }
-.navBar{
-  background-color: blue;
-  font-size: 1.5rem;
-  height: 65px;
-  top: 0;
 
+.header{
+  border-bottom:  1px solid #e5eaef;
 }
 
-.navBar ul{
+.nav {
   display: flex;
+  align-items: center;
   list-style-type: none;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.nav li {
+  margin-right: 15px;
+}
+
+.link{
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: black;
 }

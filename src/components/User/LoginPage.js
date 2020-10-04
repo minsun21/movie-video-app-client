@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../actions/userAction';
+import './LoginPage.css'
 
 function LoginPage(props) {
     const dispatch = useDispatch();
@@ -13,15 +14,13 @@ function LoginPage(props) {
     const inputChangeHandler = (e) => {
         const { value, name } = e.target;
         setInputs({
+            ...inputs,
             [name]: value
         });
     }
 
     const submitHandler = (e) => {
-
         e.preventDefault();
-        if (Email.length < 0 || Password < 0)
-            alert('값을 입력해주세요!')
         let loginInfo = {
             email: Email,
             password: Password
@@ -35,12 +34,12 @@ function LoginPage(props) {
         })
     }
     return (
-        <div>
+        <div className="login-form">
             <form onSubmit={submitHandler}>
                 <label>Email</label>
-                <input type="email" name="Email" value={Email} onChange={inputChangeHandler} />
+                <input required type="email" name="Email" value={Email} onChange={inputChangeHandler} />
                 <label>Password</label>
-                <input type="password" name="Password" value={Password} onChange={inputChangeHandler} />
+                <input required type="password" name="Password" value={Password} onChange={inputChangeHandler} />
                 <button type="submit">Login</button>
                 <a href="/register">JOIN!</a>
             </form>
