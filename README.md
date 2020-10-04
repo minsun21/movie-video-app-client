@@ -20,3 +20,10 @@
 
 # 4. REGISTER
 - Register page
+
+
+
+# 5. VIDEO UPLOAD
+- Upload Page
+- File Upload(multipart)
+- ffmpeg

@@ -29,7 +29,7 @@ function LoginPage(props) {
             console.log(response.payload);
             if (response.payload.loginSuccess === 'success') {
                 localStorage.setItem("loginInfo", response.payload.email);
-                props.history.push('/main')
+                props.history.push('/movie')
             } else {
                 alert(response.payload.loginSuccess);
             }

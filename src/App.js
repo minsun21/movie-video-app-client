@@ -6,9 +6,12 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import LandingPage from './components/Landing/LandingPage';
+import VideoLandingPage from './components/Video/VideoLandingPage';
 import RegisterPage from './components/User/RegisterPage';
 import LoginPage from './components/User/LoginPage'
+import MovieLandingPage from './components/Movie/MovieLandingPage';
+import VideoUploadPage from './components/Video/Upload/VideoUploadPage';
+
 
 function App() {
   return (
@@ -20,14 +23,22 @@ function App() {
               <Link className="link" to="/">Home</Link>
             </li>
             <li>
-              <Link className="link" to="/main">About</Link>
+              <Link className="link" to="/movie">Movie</Link>
+            </li>
+            <li>
+              <Link className="link" to="/video">Video</Link>
+            </li>
+            <li>
+              <Link className="link" to="/video/upload">Video Upload</Link>
             </li>
           </ul>
         </div>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route exact path="/main" component={LandingPage} />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/movie" component={MovieLandingPage} />
+          <Route exact path="/video" component={VideoLandingPage} />
+          <Route exact path="/video/upload" component={VideoUploadPage} />
         </Switch>
       </div>
     </Router>
