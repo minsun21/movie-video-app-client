@@ -26,10 +26,12 @@ function LoginPage(props) {
             password: Password
         }
         dispatch(loginUser(loginInfo)).then(response => {
+            console.log(response.payload);
             if (response.payload.loginSuccess === 'success') {
+                localStorage.setItem("loginInfo", response.payload.email);
                 props.history.push('/main')
             } else {
-                alert('Error');
+                alert(response.payload.loginSuccess);
             }
         })
     }

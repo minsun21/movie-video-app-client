@@ -27,7 +27,14 @@ function RegisterPage(props) {
             password: Password,
             name: Name
         }
-        axios.post('/user/register', registerInfo).then(response => response.data);
+        axios.post('/user/register', registerInfo).then(response => {
+            if (response.data.result !== 'success') {
+                alert(response.data.result)
+            } else {
+                alert('회원 가입이 완료 되었습니다')
+                props.history.push('/')
+            }
+        });
     }
 
     return (

@@ -16,3 +16,7 @@
 - router dom
 - navigation
 - login page
+
+
+# 4. REGISTER
+- Register page
