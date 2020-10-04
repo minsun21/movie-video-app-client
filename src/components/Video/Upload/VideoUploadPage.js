@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone';
 import { PrivateList, CategoryList } from './Data';
 import axios from 'axios'
 
-function VideoUploadPage() {
+function VideoUploadPage(props) {
     const [inputs, setInputs] = useState({
         Title: '',
         Desc: ''
@@ -36,9 +36,26 @@ function VideoUploadPage() {
         formData.append("file", files[0])
         axios.post('/video/upload', formData, config).then(response => {
             if (response.data.result === 'success') {
-                alert('업로드에 성공했습니다')
                 setVideoFile(response.data.path)
                 console.log(response.data.path)
+            } else {
+                alert('업로드에 실패했습니다')
+            }
+        })
+    }
+
+    const submitVideo = () => {
+        let videoInfo = {
+            title: Title,
+            desc: Desc,
+            auth: Private,
+            category: Category,
+            path: VideoFile
+        }
+        axios.post('/video/uploadInfo', videoInfo).then(response => {
+            if (response.data.result === 'success') {
+                alert('업로드에 성공했습니다')
+                props.push('/video')
             } else {
                 alert('업로드에 실패했습니다')
             }
@@ -48,7 +65,7 @@ function VideoUploadPage() {
         <>
             <div className="video-upload">
                 <h1>Upload Video</h1>
-                <form>
+                <form onSubmit={submitVideo}>
                     <div className="dropzone">
                         <Dropzone
                             onDrop={onDrop}
