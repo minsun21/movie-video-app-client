@@ -13,6 +13,7 @@ function VideoUploadPage(props) {
     const [Private, setPrivate] = useState('')
     const [Category, setCategory] = useState('')
     const [VideoFile, setVideoFile] = useState('')
+    const [Image, setImage] = useState('')
 
     const inputChangeHandler = (e) => {
         const { name, value } = e.target;
@@ -31,16 +32,31 @@ function VideoUploadPage(props) {
     const onDrop = (files) => {
         let formData = new FormData;
         const config = {
-            header: { 'content-type': 'multipart/form-data' }
+            header: {
+                'response-type': 'arraybuffer',
+                'content-type': 'multipart/form-data'
+            }
         }
         formData.append("file", files[0])
         axios.post('/video/upload', formData, config).then(response => {
-            if (response.data.result === 'success') {
-                setVideoFile(response.data.path)
-                console.log(response.data.path)
-            } else {
-                alert('업로드에 실패했습니다')
-            }
+            // response.data is an empty object
+            const blob = new Blob([response.data], {
+                type: 'application/jpg',
+            });
+            const url = URL.createObjectURL(blob);
+            console.log(url)
+            setImage(url)
+            // if (response.data.result === 'success') {
+            //     setVideoFile(files[0].name)
+            //     const blob = new Blob([response.data], {
+            //         type: 'application/jpg',
+            //     });
+            //     const url = URL.createObjectURL(blob);
+            //     console.log(url);
+            //     setImage(url);
+            // } else {
+            //     alert('업로드에 실패했습니다')
+            // }
         })
     }
 
@@ -55,6 +71,7 @@ function VideoUploadPage(props) {
         axios.post('/video/uploadInfo', videoInfo).then(response => {
             if (response.data.result === 'success') {
                 alert('업로드에 성공했습니다')
+                // window.URL.revokeObjectURL(Image);
                 props.push('/video')
             } else {
                 alert('업로드에 실패했습니다')
@@ -80,6 +97,7 @@ function VideoUploadPage(props) {
                                 </div>
                             )}
                         </Dropzone>
+                        <img src={Image} alt="Blob URL Image" />
                     </div>
                     <label>Title</label>
                     <input required type="text" name="Title" value={Title} onChange={inputChangeHandler}></input>
