@@ -10,8 +10,8 @@ function VideoUploadPage(props) {
         Desc: ''
     });
     const { Title, Desc } = inputs;
-    const [Private, setPrivate] = useState('')
-    const [Category, setCategory] = useState('')
+    const [Private, setPrivate] = useState('0')
+    const [Category, setCategory] = useState('1')
     const [VideoFile, setVideoFile] = useState('')
     const [Image, setImage] = useState('')
 
@@ -31,29 +31,30 @@ function VideoUploadPage(props) {
     }
     const onDrop = (files) => {
         let formData = new FormData;
-        const config = {
-            header: {
-                'response-type': 'arraybuffer',
-                'content-type': 'multipart/form-data'
-            }
-        }
         formData.append("file", files[0])
-        axios.post('/video/upload', formData, config).then(response => {
+        axios.post('/video/upload', formData, {
+            responseType: "arraybuffer",
+            headers: {
+                Accept: "image/jpeg",
+                contentType: "multipart/form-data",
+            },
+        }).then(response => {
             // response.data is an empty object
-            const blob = new Blob([response.data], {
+            const blob = new Blob([response.data.bytes], {
                 type: 'application/jpg',
             });
             const url = URL.createObjectURL(blob);
-            console.log(url)
-            setImage(url)
+            setVideoFile(files[0].name)
+            setImage(url);
+            alert('성공')
             // if (response.data.result === 'success') {
             //     setVideoFile(files[0].name)
             //     const blob = new Blob([response.data], {
             //         type: 'application/jpg',
             //     });
             //     const url = URL.createObjectURL(blob);
-            //     console.log(url);
-            //     setImage(url);
+            //     // console.log(url);
+            //     // setImage(url);
             // } else {
             //     alert('업로드에 실패했습니다')
             // }
@@ -68,7 +69,7 @@ function VideoUploadPage(props) {
             category: Category,
             path: VideoFile
         }
-        axios.post('/video/uploadInfo', videoInfo).then(response => {
+        axios.post('/video/submit', videoInfo).then(response => {
             if (response.data.result === 'success') {
                 alert('업로드에 성공했습니다')
                 // window.URL.revokeObjectURL(Image);
@@ -78,6 +79,7 @@ function VideoUploadPage(props) {
             }
         })
     }
+
     return (
         <>
             <div className="video-upload">
@@ -89,7 +91,7 @@ function VideoUploadPage(props) {
                             multiple={false}
                             maxSize={800000000}>
                             {({ getRootProps, getInputProps }) => (
-                                <div style={{ width: '300px', height: '240px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                <div style={{ width: '50%', height: '240px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                     {...getRootProps()}
                                 >
                                     <input {...getInputProps()} />

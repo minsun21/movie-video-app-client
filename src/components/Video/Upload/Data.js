@@ -5,7 +5,7 @@ export const PrivateList = [
 
 export const CategoryList = [
     { value: 0, label: "Film & Animation" },
-    { value: 0, label: "Autos & Vehicles" },
-    { value: 0, label: "Music" },
-    { value: 0, label: "Pets & Animals" }
+    { value: 1, label: "Autos & Vehicles" },
+    { value: 2, label: "Music" },
+    { value: 3, label: "Pets & Animals" }
 ]

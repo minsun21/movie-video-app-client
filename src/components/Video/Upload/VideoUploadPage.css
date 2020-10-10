@@ -18,8 +18,13 @@ h1{
     display: flex;
     flex-direction: row;
     margin-bottom: 30px;
-    background-color: red;
 }
+
+.video-upload img{
+    width: 50%;
+    object-fit: cover;
+}
+
 .video-upload form {
     width: 60%;
     display: flex;
