@@ -33,34 +33,34 @@ function VideoUploadPage(props) {
         let formData = new FormData;
         formData.append("file", files[0])
         axios.post('/video/upload', formData, {
-            responseType: "arraybuffer",
             headers: {
-                Accept: "image/jpeg",
                 contentType: "multipart/form-data",
             },
         }).then(response => {
-            // response.data is an empty object
-            const blob = new Blob([response.data.bytes], {
-                type: 'application/jpg',
-            });
-            const url = URL.createObjectURL(blob);
-            setVideoFile(files[0].name)
-            setImage(url);
-            alert('성공')
-            // if (response.data.result === 'success') {
-            //     setVideoFile(files[0].name)
-            //     const blob = new Blob([response.data], {
-            //         type: 'application/jpg',
-            //     });
-            //     const url = URL.createObjectURL(blob);
-            //     // console.log(url);
-            //     // setImage(url);
-            // } else {
-            //     alert('업로드에 실패했습니다')
-            // }
+            if (response.data.result === "success") {
+                var buffer = base64ToArrayBuffer(response.data.bytes);
+                const blob = new Blob([buffer], {
+                    type: 'application/jpg',
+                });
+                const url = URL.createObjectURL(blob);
+                setVideoFile(response.data.uid)
+                setImage(url);
+                alert('업로드 성공')
+            } else {
+                alert('업로드 실패')
+            }
         })
     }
 
+    function base64ToArrayBuffer(base64) {
+        var binary_string = window.atob(base64);
+        var len = binary_string.length;
+        var bytes = new Uint8Array(len);
+        for (var i = 0; i < len; i++) {
+            bytes[i] = binary_string.charCodeAt(i);
+        }
+        return bytes.buffer;
+    }
     const submitVideo = () => {
         let videoInfo = {
             title: Title,
