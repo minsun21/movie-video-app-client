@@ -27,3 +27,6 @@
 - Upload Page
 - File Upload(multipart)
 - ffmpeg
+- useSelector
+
+# 6. VIDEOS LANDING PAGE

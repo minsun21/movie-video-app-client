@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../actions/userAction';
-import './LoginPage.css'
+import './LoginPage.css';
 
 function LoginPage(props) {
     const dispatch = useDispatch();
@@ -26,7 +26,6 @@ function LoginPage(props) {
             password: Password
         }
         dispatch(loginUser(loginInfo)).then(response => {
-            console.log(response.payload);
             if (response.payload.loginSuccess === 'success') {
                 localStorage.setItem("loginInfo", response.payload.email);
                 props.history.push('/movie')

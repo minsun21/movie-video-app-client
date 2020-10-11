@@ -11,7 +11,7 @@ import RegisterPage from './components/User/RegisterPage';
 import LoginPage from './components/User/LoginPage'
 import MovieLandingPage from './components/Movie/MovieLandingPage';
 import VideoUploadPage from './components/Video/Upload/VideoUploadPage';
-
+import VideoDetailPage from './components/Video/DetailPage/VideoDetailPage';
 
 function App() {
   return (
@@ -39,6 +39,7 @@ function App() {
           <Route exact path="/movie" component={MovieLandingPage} />
           <Route exact path="/video" component={VideoLandingPage} />
           <Route exact path="/video/upload" component={VideoUploadPage} />
+          <Route exact path="/video/:videoId" component={VideoDetailPage} />
         </Switch>
       </div>
     </Router>

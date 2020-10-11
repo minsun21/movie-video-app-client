@@ -3,8 +3,11 @@ import './VideoUploadPage.css';
 import Dropzone from 'react-dropzone';
 import { PrivateList, CategoryList } from './Data';
 import axios from 'axios'
+import { useSelector } from 'react-redux';
+import { base64ToArrayBuffer } from '../../../utils/Util';
 
 function VideoUploadPage(props) {
+    const userInfo = useSelector(state => state.user.loginSuccess);
     const [inputs, setInputs] = useState({
         Title: '',
         Desc: ''
@@ -52,27 +55,23 @@ function VideoUploadPage(props) {
         })
     }
 
-    function base64ToArrayBuffer(base64) {
-        var binary_string = window.atob(base64);
-        var len = binary_string.length;
-        var bytes = new Uint8Array(len);
-        for (var i = 0; i < len; i++) {
-            bytes[i] = binary_string.charCodeAt(i);
-        }
-        return bytes.buffer;
-    }
-    const submitVideo = () => {
+
+
+    const submitVideo = (e) => {
+        e.preventDefault();
         let videoInfo = {
             title: Title,
             desc: Desc,
             auth: Private,
             category: Category,
-            path: VideoFile
+            path: VideoFile,
+            user: userInfo.email
         }
+
         axios.post('/video/submit', videoInfo).then(response => {
             if (response.data.result === 'success') {
                 alert('업로드에 성공했습니다')
-                // window.URL.revokeObjectURL(Image);
+                window.URL.revokeObjectURL(Image);
                 props.push('/video')
             } else {
                 alert('업로드에 실패했습니다')
@@ -83,7 +82,6 @@ function VideoUploadPage(props) {
     return (
         <>
             <div className="video-upload">
-                <h1>Upload Video</h1>
                 <form onSubmit={submitVideo}>
                     <div className="dropzone">
                         <Dropzone
@@ -99,7 +97,7 @@ function VideoUploadPage(props) {
                                 </div>
                             )}
                         </Dropzone>
-                        <img src={Image} alt="Blob URL Image" />
+                        {Image && <img src={Image} alt="Blob URL Image" />}
                     </div>
                     <label>Title</label>
                     <input required type="text" name="Title" value={Title} onChange={inputChangeHandler}></input>
