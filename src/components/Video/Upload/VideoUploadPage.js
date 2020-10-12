@@ -72,7 +72,7 @@ function VideoUploadPage(props) {
             if (response.data.result === 'success') {
                 alert('업로드에 성공했습니다')
                 window.URL.revokeObjectURL(Image);
-                props.push('/video')
+                props.history.push('/video')
             } else {
                 alert('업로드에 실패했습니다')
             }
