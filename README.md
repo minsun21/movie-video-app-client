@@ -26,7 +26,8 @@
 # 5. VIDEO UPLOAD
 - Upload Page
 - File Upload(multipart)
-- ffmpeg
 - useSelector
+- ADD LOADING..
+- ADD REMOVE_FUNCTION
 
 # 6. VIDEOS LANDING PAGE

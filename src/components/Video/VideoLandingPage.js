@@ -13,48 +13,29 @@ function LandingPage() {
 
     useEffect(() => {
         axios.get('video/all').then(response => {
+            console.log('??')
             console.log(response.data);
             setVideos(response.data);
         })
     }, [])
-
-    // const renderCards = Videos.map((video, index) => {
-    //     var buffer = base64ToArrayBuffer(video.thumbnail);
-    //     const blob = new Blob([buffer], {
-    //         type: 'application/jpg',
-    //     });
-
-    //     const url = URL.createObjectURL(blob);
-    //     console.log(url)
-    //     return <Col lg={6} md={8} xs={24}>
-    //         <Link to={`/video//${video.id}`}>
-    //             <div className="video">
-    //                 <img src={url}></img>
-    //             </div>
-    //             <Meta
-    //                 avatar={
-    //                     <Avatar src={video.writer.image} />
-    //                 }
-    //                 title={video.title}
-    //             />
-    //             <span>{video.member} </span><br />
-    //             <span style={{ marginLeft: '3rem' }}> {video.views}</span>
-    //         </Link>
-    //     </Col>
-    // });
 
     const renderCards = Videos.map((video, index) => {
         var buffer = base64ToArrayBuffer(video.thumbnail);
         const blob = new Blob([buffer], {
             type: 'application/jpg',
         });
-        const url = URL.createObjectURL(blob);
+        var buffer2 = base64ToArrayBuffer(video.memberImage);
+        const blob2 = new Blob([buffer2], {
+            type: 'application/jpg',
+        });
+        const videoUrl = URL.createObjectURL(blob);
+        const memberUrl = URL.createObjectURL(blob2);
         return <Col lg={6} md={8} xs={24}>
             <Link to={`/video/${video.id}`}>
-                <img style={{ width: '100%' }} src={url} alt={video.title}></img>
-                <img style={{ borderRadius: '50%', width: '50px', height: '50px' }} src={url} alt={video.title}></img>
+                <img style={{ width: '100%' }} src={videoUrl} alt={video.title}></img>
+                <img style={{ borderRadius: '50%', width: '50px', height: '50px' }} src={memberUrl} alt={video.memberName}></img>
                 <h2>{video.title}</h2>
-                <span>{video.member}</span>
+                <span>{video.memberName}</span>
                 <span>{video.viewCount}</span>
             </Link>
         </Col>

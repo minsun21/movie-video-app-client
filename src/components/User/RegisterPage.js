@@ -24,8 +24,10 @@ function RegisterPage(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (Password !== PasswordConfirm)
-            alert('비밀번호가 맞지 않습니다')
+        if (Password !== PasswordConfirm) {
+            alert('비밀번호가 맞지 않습니다');
+            return;
+        }
         let registerInfo = {
             email: Email,
             password: Password,
