@@ -13,10 +13,10 @@ function VideoUploadPage(props) {
         Desc: ''
     });
     const { Title, Desc } = inputs;
-    const [Private, setPrivate] = useState('0')
-    const [Category, setCategory] = useState('1')
-    const [VideoFile, setVideoFile] = useState('')
-    const [Image, setImage] = useState('')
+    const [Private, setPrivate] = useState('0');
+    const [Category, setCategory] = useState('1');
+    const [VideoFile, setVideoFile] = useState('');
+    const [Image, setImage] = useState('');
 
     const inputChangeHandler = (e) => {
         const { name, value } = e.target;
