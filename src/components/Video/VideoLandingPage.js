@@ -13,8 +13,6 @@ function LandingPage() {
 
     useEffect(() => {
         axios.get('video/all').then(response => {
-            console.log('??')
-            console.log(response.data);
             setVideos(response.data);
         })
     }, [])
@@ -30,23 +28,29 @@ function LandingPage() {
         });
         const videoUrl = URL.createObjectURL(blob);
         const memberUrl = URL.createObjectURL(blob2);
-        return <Col lg={6} md={8} xs={24}>
+        return <Col lg={6} md={8} xs={24} key={index}>
             <Link to={`/video/${video.id}`}>
-                <img style={{ width: '100%' }} src={videoUrl} alt={video.title}></img>
-                <img style={{ borderRadius: '50%', width: '50px', height: '50px' }} src={memberUrl} alt={video.memberName}></img>
-                <h2>{video.title}</h2>
-                <span>{video.memberName}</span>
-                <span>{video.viewCount}</span>
+                <img className="videoThumb" src={videoUrl} alt={video.title}></img>
+                <div className="video-info">
+                    <img className="memberImg" src={memberUrl} alt={video.memberName}></img>
+                    <div className="video-info-alt">
+                        <strong>{video.title}</strong>
+                        <span>{video.memberName}</span>
+                        <p>조회수 {video.viewCount}회</p>
+                    </div>
+                </div>
             </Link>
         </Col>
     });
     return (
-        <div style={{ width: '100%', margin: '3rem auto' }}>
-            <h1>Recommended</h1>
+        <div className="landing-view">
+            <h1>All Video</h1>
             <hr />
-            <Row gutter={16}>
-                {renderCards}
-            </Row>
+            <div className="cards">
+                <Row gutter={16}>
+                    {renderCards}
+                </Row>
+            </div>
         </div >
     )
 }

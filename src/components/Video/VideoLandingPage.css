@@ -1,0 +1,39 @@
+.landing-view{
+    padding: 50px;
+}
+.landing-view h1{
+    margin-bottom: 10px;
+}
+
+.landing-view .cards{
+    margin-top: 15px;
+}
+
+.landing-view .videoThumb{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.landing-view .memberImg{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.landing-view .video-info{
+    display: flex;
+    align-items: top;
+}
+
+.landing-view .video-info-alt {
+    font-size: 1rem;
+    color:gray;
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-view .video-info-alt strong{
+    color:black;
+    font-size: 1.5rem;
+}
