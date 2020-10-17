@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card, Avatar, Col, Row } from 'antd';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import { base64ToArrayBuffer } from '../../utils/Util';
+import { getUrl } from '../../utils/Util';
 
 import './VideoLandingPage.css';
 
@@ -18,21 +18,13 @@ function LandingPage() {
     }, [])
 
     const renderCards = Videos.map((video, index) => {
-        var buffer = base64ToArrayBuffer(video.thumbnail);
-        const blob = new Blob([buffer], {
-            type: 'application/jpg',
-        });
-        var buffer2 = base64ToArrayBuffer(video.memberImage);
-        const blob2 = new Blob([buffer2], {
-            type: 'application/jpg',
-        });
-        const videoUrl = URL.createObjectURL(blob);
-        const memberUrl = URL.createObjectURL(blob2);
+        const videoUrl = getUrl(video.thumbnail, 'jpg');
+        const memberUrl = getUrl(video.memberImage, 'jpg');
         return <Col lg={6} md={8} xs={24} key={index}>
             <Link to={`/video/${video.id}`}>
-                <img className="videoThumb" src={videoUrl} alt={video.title}></img>
+                <img className="videoThumb" src={videoUrl} alt={video.title} />
                 <div className="video-info">
-                    <img className="memberImg" src={memberUrl} alt={video.memberName}></img>
+                    <img className="memberImg" src={memberUrl} alt={video.memberName} />
                     <div className="video-info-alt">
                         <strong>{video.title}</strong>
                         <span>{video.memberName}</span>

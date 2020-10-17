@@ -4,7 +4,7 @@ import Dropzone from 'react-dropzone';
 import { PrivateList, CategoryList } from './Data';
 import axios from 'axios'
 import { useSelector } from 'react-redux';
-import { base64ToArrayBuffer } from '../../../utils/Util';
+import { getUrl } from '../../../utils/Util';
 
 function VideoUploadPage(props) {
     const userInfo = useSelector(state => state.user.loginSuccess);
@@ -41,11 +41,7 @@ function VideoUploadPage(props) {
             },
         }).then(response => {
             if (response.data.result === "success") {
-                var buffer = base64ToArrayBuffer(response.data.bytes);
-                const blob = new Blob([buffer], {
-                    type: 'application/jpg',
-                });
-                const url = URL.createObjectURL(blob);
+                const url = getUrl(response.data.bytes, 'jpg');
                 setVideoFile(response.data.uid)
                 setImage(url);
                 alert('업로드 성공')
@@ -54,8 +50,6 @@ function VideoUploadPage(props) {
             }
         })
     }
-
-
 
     const submitVideo = (e) => {
         e.preventDefault();

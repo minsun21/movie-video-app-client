@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './RegisterPage.css';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
-import { base64ToArrayBuffer } from '../../utils/Util';
+import { getUrl } from '../../utils/Util';
 
 function RegisterPage(props) {
     const [Image, setImage] = useState('');
@@ -52,11 +52,7 @@ function RegisterPage(props) {
             },
         }).then(response => {
             if (response.data.result === 'success') {
-                var buffer = base64ToArrayBuffer(response.data.bytes);
-                const blob = new Blob([buffer], {
-                    type: 'application/jpg',
-                });
-                const url = URL.createObjectURL(blob);
+                const url = getUrl(response.data.bytes, 'jpg');
                 setImage(url);
                 setAvatar(response.data.uid);
             } else {
