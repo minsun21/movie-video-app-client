@@ -13,7 +13,13 @@
     margin-right: 10px;
 }
 
-.video-detail .detail-info{
+.video-detail .detail-info-top{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #E0E0E0;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+.video-detail .detail-info-bottom{
     display: flex;
     align-items: top;
 }
@@ -23,4 +29,27 @@
     color:gray;
     display: flex;
     flex-direction: column;
+}
+.side-view {
+    display: flex;
+}
+
+.side-view h1{
+    font-size: 1.1rem;
+}
+.side-view img{
+    width: 50%;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.subscribe-section .dis-subscribed{
+    background-color:#CC0000;
+    color:white;
+    padding:5px 10px;
+}
+.subscribe-section .subscribed{
+    background-color:#ECECEC;
+    color:#606060;
+    padding:5px 10px;
 }

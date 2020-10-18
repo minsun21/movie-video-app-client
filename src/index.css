@@ -9,3 +9,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* 공통 css는 여기에 */
+
+button{
+  border: none;
+}
+button:hover{
+  cursor: pointer;
+}
+button:focus{
+  outline: none;
+}
+
+.submit-button{
+  border: 1px solid #F0F0F0;
+  padding: 8px;
+  border-radius: 5px;
+  color: white;
+  background-color: #1890FF;
+}
+.submit-button:hover{
+  background-color: #3FA8FF;
+}
+
+input{
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #F0F0F0;
+}
+input:focus{
+  outline: #E0E0E0;
+
+}

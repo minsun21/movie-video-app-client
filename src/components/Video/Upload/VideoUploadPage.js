@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux';
 import { getUrl } from '../../../utils/Util';
 
 function VideoUploadPage(props) {
-    const userInfo = useSelector(state => state.user.loginSuccess);
+    const userInfo = useSelector(state => state.user.loginInfo);
+
     const [inputs, setInputs] = useState({
         Title: '',
         Desc: ''
@@ -34,7 +35,7 @@ function VideoUploadPage(props) {
     }
     const onDrop = (files) => {
         let formData = new FormData;
-        formData.append("file", files[0])
+        formData.append("file", files[0]);
         axios.post('/video/upload', formData, {
             headers: {
                 contentType: "multipart/form-data",
@@ -107,7 +108,7 @@ function VideoUploadPage(props) {
                             <option key={index} value={item.value}>{item.label}</option>
                         ))}
                     </select>
-                    <button type="submit">Submit</button>
+                    <button className="submit-button" type="submit">Submit</button>
                 </form>
             </div>
         </>

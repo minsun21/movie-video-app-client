@@ -27,8 +27,8 @@ function LoginPage(props) {
         }
         dispatch(loginUser(loginInfo)).then(response => {
             if (response.payload.loginSuccess === 'success') {
-                localStorage.setItem("loginInfo", response.payload.email);
-                props.history.push('/movie')
+                props.history.push('/video');
+
             } else {
                 alert(response.payload.loginSuccess);
             }
@@ -41,7 +41,7 @@ function LoginPage(props) {
                 <input required type="email" name="Email" value={Email} onChange={inputChangeHandler} />
                 <label>Password</label>
                 <input required type="password" name="Password" value={Password} onChange={inputChangeHandler} />
-                <button type="submit">Login</button>
+                <button className="submit-button" type="submit">Login</button>
                 <a href="/register">JOIN!</a>
             </form>
         </div>

@@ -28,6 +28,10 @@ function RegisterPage(props) {
             alert('비밀번호가 맞지 않습니다');
             return;
         }
+        // else if(Password.length > 8){
+        //     alert('비밀번호는 8자리 이상이어야 합니다');
+        //     return;
+        // }
         let registerInfo = {
             email: Email,
             password: Password,
@@ -46,6 +50,7 @@ function RegisterPage(props) {
     const onDrop = (files) => {
         let formData = new FormData;
         formData.append("file", files[0])
+        console.log(files[0]);
         axios.post('/user/register/image', formData, {
             headers: {
                 contentType: "multipart/form-data",
@@ -83,7 +88,7 @@ function RegisterPage(props) {
                     {Image ? <button onClick={deleteImage}>삭제</button> : <Dropzone
                         onDrop={onDrop}
                         multiple={false}
-                        maxSize={100000}>
+                        maxSize={800000}>
                         {({ getRootProps, getInputProps }) => (
                             <div style={{ width: '100%', height: '150px', marginBottom: '10px', border: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 {...getRootProps()}
@@ -96,7 +101,7 @@ function RegisterPage(props) {
 
                 </div>
 
-                <button type="submit">JOIN</button>
+                <button className="submit-button" type="submit">JOIN</button>
             </form>
         </div>
     )

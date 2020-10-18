@@ -12,7 +12,6 @@ h1{
     margin-bottom: 50px;
 }
 
-
 .video-upload .dropzone {
     width: 50%;
     display: flex;
@@ -43,23 +42,11 @@ h1{
     margin-bottom: 10px;
 }
 .video-upload input{
-    padding: 8px;
-    border: 1px solid #F0F0F0;
-    border-radius: 5px;
     margin-bottom: 10px;
 }
 
 .video-upload button{
     width: 20%;
-    background-color: #1890FF;
-    border: 1px solid #F0F0F0;
-    border-radius: 5px;
-    padding: 8px;
-    color: white;
     margin-top: 10px;
 }
 
-.video-upload button:hover{
-    cursor: pointer;
-    background-color: #3FA8FF;
-}
