@@ -11,9 +11,14 @@ function VideoDetailPage({ match }) {
     const videoId = match.params.videoId;
     const [VideoDetailInfo, setVideoDetailInfo] = useState({});
     const [SideVideos, setSideVideos] = useState([]);
+    const [CommentInfo, setCommentInfo] = useState([]);
 
     useEffect(() => {
         let variable = { videoId: videoId };
+        // Axios.post('/comment/get', variable).then(response => {
+        //     setCommentInfo(response.data);
+        // });
+
         Axios.post('/video/getVideo', variable).then(response => {
             let responseData = response.data;
             const videoUrl = getUrl(responseData.videoFilePath, 'mp4');
@@ -26,6 +31,8 @@ function VideoDetailPage({ match }) {
         Axios.post('/video/getSideVideos', variable).then(response => {
             setSideVideos(response.data);
         })
+
+
         return () => (variable = '');
     }, []);
 
@@ -63,7 +70,7 @@ function VideoDetailPage({ match }) {
                                 </div>
                             </div>
                         </div>
-                        <Comment videoId={VideoDetailInfo.id} />
+                        {/* <Comment videoId={VideoDetailInfo.id} commentList={CommentInfo} setCommentInfo={setCommentInfo} /> */}
                     </Col>
                     <Col lg={6} xs={24}>
                         {renderSideVideo}
