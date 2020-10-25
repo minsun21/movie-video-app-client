@@ -11,14 +11,10 @@ function VideoDetailPage({ match }) {
     const videoId = match.params.videoId;
     const [VideoDetailInfo, setVideoDetailInfo] = useState({});
     const [SideVideos, setSideVideos] = useState([]);
-    const [CommentInfo, setCommentInfo] = useState([]);
+    const [Comments, setComments] = useState([]);
 
     useEffect(() => {
         let variable = { videoId: videoId };
-        // Axios.post('/comment/get', variable).then(response => {
-        //     setCommentInfo(response.data);
-        // });
-
         Axios.post('/video/getVideo', variable).then(response => {
             let responseData = response.data;
             const videoUrl = getUrl(responseData.videoFilePath, 'mp4');
@@ -27,14 +23,24 @@ function VideoDetailPage({ match }) {
             responseData.memberImage = memberImgUrl;
             setVideoDetailInfo(responseData);
         });
+        Axios.post('/comment/get', variable).then(response => {
+            console.log(response.data)
+            setComments(response.data);
+        });
+        // Axios.post('/video/getSideVideos', variable).then(response => {
+        //     setSideVideos(response.data);
+        // })
 
-        Axios.post('/video/getSideVideos', variable).then(response => {
-            setSideVideos(response.data);
-        })
 
-
-        return () => (variable = '');
+        // return () => (variable = '');
     }, []);
+
+    // useEffect(() => {
+    //     let variable = { videoId: videoId };
+    //     Axios.post('/comment/get', variable).then(response => {
+    //         setComments(response.data);
+    //     });
+    // }, [])
 
     const renderSideVideo = SideVideos.map(video => {
         let videoUrl = getUrl(video.thumbnail, 'jpg');
@@ -70,7 +76,7 @@ function VideoDetailPage({ match }) {
                                 </div>
                             </div>
                         </div>
-                        {/* <Comment videoId={VideoDetailInfo.id} commentList={CommentInfo} setCommentInfo={setCommentInfo} /> */}
+                        <Comment videoId={VideoDetailInfo.id} Comments={Comments} setComments={setComments} />
                     </Col>
                     <Col lg={6} xs={24}>
                         {renderSideVideo}

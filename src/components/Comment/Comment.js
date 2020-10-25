@@ -19,6 +19,7 @@ function Comment({ videoId, commentList, setCommentInfo }) {
             videoId: videoId,
         }
         axios.post('/comment/write', body).then(response => {
+            console.log(response.data)
             if (response.data.result !== 'success')
                 alert('실패');
             else
@@ -32,6 +33,9 @@ function Comment({ videoId, commentList, setCommentInfo }) {
 
     return (
         <div>
+            <br />
+            <p>Replies</p>
+            <hr />
             {/* submit */}
             {commentList ?
                 commentList.map(comment => <SingleCommment key={comment.id} comment={comment} />)

@@ -24,7 +24,6 @@ function App() {
         <Switch>
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/movie" component={MovieLandingPage} />
           <Route exact path="/video" component={VideoLandingPage} />
           <Route exact path="/video/upload" component={VideoUploadPage} />
           <Route exact path="/video/subscriptoin" component={SubscriptionPage} />

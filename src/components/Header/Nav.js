@@ -9,9 +9,6 @@ function Nav() {
                     <Link className="link" to="/">Home</Link>
                 </li>
                 <li>
-                    <Link className="link" to="/movie">Movie</Link>
-                </li>
-                <li>
                     <Link className="link" to="/video">Video</Link>
                 </li>
                 <li>
